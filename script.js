@@ -53,11 +53,6 @@ const ramos = [
   { id: 44, nombre: "Seminario integración", prerrequisitos: Array.from({length: 41}, (_, i) => i + 1), semestre: 10 }
 ];
 
-const ramos = [
-  // ... (misma lista de ramos que antes con id, nombre, prerrequisitos, semestre)
-  // No repito por espacio, puedes copiar la que ya tienes
-];
-
 const contenedor = document.getElementById("malla");
 
 function obtenerCompletados() {
