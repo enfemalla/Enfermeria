@@ -25,9 +25,10 @@ const ramos = [
   { id: 21, nombre: "Gestión del cuidado (cont.)", prerrequisitos: [17], semestre: 4 },
   { id: 22, nombre: "Informática en salud", prerrequisitos: [16], semestre: 4 },
   { id: 23, nombre: "Integrado ciclo inicial", prerrequisitos: [5, 10, 13, 15, 16], semestre: 4 },
+  { id: 45, nombre: "Gestión en servicios de salud", prerrequisitos: [16], semestre: 4 },
 
   { id: 24, nombre: "Gestión cuidado mujer", prerrequisitos: [], semestre: 5 },
-  { id: 25, nombre: "Calidad cuidado", prerrequisitos: [21], semestre: 5 },
+  { id: 25, nombre: "Calidad en la gestión del cuidado", prerrequisitos: [21, 45], semestre: 5 },
   { id: 26, nombre: "Gestión adulto mayor", prerrequisitos: [17, 19, 20, 23], semestre: 5 },
   { id: 27, nombre: "Gestión en comunidades", prerrequisitos: [17, 19, 20, 23], semestre: 5 },
   { id: 28, nombre: "Enfermería adulto mayor", prerrequisitos: [], semestre: 5 },
@@ -117,6 +118,9 @@ function actualizarRamos() {
 }
 
 crearMalla();
+function reiniciarMalla() {
+  localStorage.removeItem("ramosCompletados");
+  location.reload();
+}
 
- 
-crearMalla();
+
