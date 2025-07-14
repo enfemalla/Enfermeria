@@ -53,7 +53,20 @@ const ramos = [
   { id: 44, nombre: "Seminario integración", prerrequisitos: Array.from({length: 41}, (_, i) => i + 1), semestre: 10 }
 ];
 
+const ramos = [
+  // ... (misma lista de ramos que antes con id, nombre, prerrequisitos, semestre)
+  // No repito por espacio, puedes copiar la que ya tienes
+];
+
 const contenedor = document.getElementById("malla");
+
+function obtenerCompletados() {
+  return JSON.parse(localStorage.getItem("ramosCompletados") || "[]");
+}
+
+function guardarCompletados(ids) {
+  localStorage.setItem("ramosCompletados", JSON.stringify(ids));
+}
 
 function crearMalla() {
   for (let i = 1; i <= 10; i++) {
@@ -81,20 +94,34 @@ function crearMalla() {
 function completarRamo(id) {
   const div = document.getElementById("ramo-" + id);
   div.classList.add("completado");
+
+  const completados = obtenerCompletados();
+  if (!completados.includes(id)) {
+    completados.push(id);
+    guardarCompletados(completados);
+  }
+
   actualizarRamos();
 }
 
 function actualizarRamos() {
+  const completados = obtenerCompletados();
+
   ramos.forEach(ramo => {
     const div = document.getElementById("ramo-" + ramo.id);
-    const completados = ramo.prerrequisitos.every(p => {
-      const r = document.getElementById("ramo-" + p);
-      return r.classList.contains("completado");
-    });
-    if (ramo.prerrequisitos.length === 0 || completados) {
+
+    if (completados.includes(ramo.id)) {
+      div.classList.add("completado");
+    }
+
+    const requisitosCompletos = ramo.prerrequisitos.every(p => completados.includes(p));
+    if (ramo.prerrequisitos.length === 0 || requisitosCompletos) {
       div.classList.add("activo");
     }
   });
 }
 
+crearMalla();
+
+ 
 crearMalla();
