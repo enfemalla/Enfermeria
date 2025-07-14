@@ -115,12 +115,10 @@ function actualizarRamos() {
       div.classList.add("activo");
     }
   });
-}
-
 crearMalla();
+
 function reiniciarMalla() {
   localStorage.removeItem("ramosCompletados");
   location.reload();
 }
-
 
