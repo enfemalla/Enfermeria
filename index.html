@@ -5,15 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Malla Curricular Enfermería</title>
   <link rel="stylesheet" href="estilos.css" />
+  <style>
+    .reiniciar-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ffe4ec;
+      color: #444;
+      border: none;
+      padding: 10px 16px;
+      font-size: 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+
+    .reiniciar-btn:hover {
+      background-color: #ffd2df;
+    }
+  </style>
 </head>
 <body>
   <h1>Malla Curricular Enfermería</h1>
+  
+  <button class="reiniciar-btn" onclick="reiniciarMalla()">🔄 Reiniciar Malla</button>
+
   <div class="malla" id="malla">
     <!-- Las columnas de semestres se generan automáticamente -->
   </div>
+
   <script src="script.js"></script>
+  <script>
+    function reiniciarMalla() {
+      const confirmar = confirm("¿Estás segura de que quieres reiniciar el progreso de la malla?");
+      if (confirmar) {
+        localStorage.removeItem("ramosCompletados");
+        location.reload();
+      }
+    }
+  </script>
 </body>
 </html>
-<button onclick="reiniciarMalla()">🔄 Reiniciar Malla</button>
-
-
