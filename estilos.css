@@ -15,7 +15,7 @@ h1 {
 
 .malla {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
   overflow-x: auto;
   padding: 10px;
@@ -25,40 +25,55 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  background-color: #fefefe;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 10px;
-  min-width: 200px;
+  background-color: #f9f3ff;
+  border: 2px solid #d9c6f5;
+  border-radius: 16px;
+  padding: 16px;
+  min-width: 220px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.semestre:hover {
+  transform: translateY(-4px);
 }
 
 .semestre h2 {
+  text-align: center;
   font-size: 1rem;
-  margin: 0 0 10px;
-  color: #888;
+  margin-bottom: 12px;
+  color: #6a4fbf;
+  background-color: #f1eaff;
+  padding: 4px 0;
+  border-radius: 8px;
 }
 
 .ramo {
-  background-color: #eae2f8;
-  border: 2px solid #d6c8f3;
+  background-color: #f0f0f0; /* color para INACTIVOS */
+  border: 2px solid #ddd;
   border-radius: 12px;
   padding: 10px;
-  cursor: pointer;
+  cursor: default;
   transition: all 0.3s ease;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  opacity: 0.5;
+  opacity: 0.4;
   pointer-events: none;
   font-size: 0.9rem;
 }
 
 .ramo.activo {
+  background-color: #eae2f8;
+  border-color: #d6c8f3;
   opacity: 1;
   pointer-events: auto;
+  cursor: pointer;
 }
 
 .ramo.completado {
   background-color: #d1f7e2;
   border-color: #9de4c2;
+  color: #2c6b50;
 }
 
 .ramo:hover {
