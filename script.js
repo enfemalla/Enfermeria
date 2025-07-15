@@ -65,6 +65,7 @@ function guardarCompletados(ids) {
 }
 
 function crearMalla() {
+  contenedor.innerHTML = ""; // 💡 Evita duplicación
   for (let i = 1; i <= 10; i++) {
     const columna = document.createElement("div");
     columna.className = "semestre";
@@ -88,15 +89,11 @@ function crearMalla() {
 }
 
 function completarRamo(id) {
-  const div = document.getElementById("ramo-" + id);
-  div.classList.add("completado");
-
   const completados = obtenerCompletados();
   if (!completados.includes(id)) {
     completados.push(id);
     guardarCompletados(completados);
   }
-
   actualizarRamos();
 }
 
@@ -105,6 +102,9 @@ function actualizarRamos() {
 
   ramos.forEach(ramo => {
     const div = document.getElementById("ramo-" + ramo.id);
+    if (!div) return;
+
+    div.classList.remove("activo", "completado");
 
     if (completados.includes(ramo.id)) {
       div.classList.add("completado");
@@ -115,10 +115,14 @@ function actualizarRamos() {
       div.classList.add("activo");
     }
   });
-crearMalla();
+}
 
 function reiniciarMalla() {
   localStorage.removeItem("ramosCompletados");
   location.reload();
 }
+
+// 🟢 Llamar a crear la malla una vez cargado el script
+crearMalla();
+
 
